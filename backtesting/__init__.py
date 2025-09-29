@@ -1,33 +1,25 @@
 """Backtesting playground for experimenting with investment strategies."""
 
-from .data import Universe, download_price_history, fetch_sp500_universe
-from .engine import BacktestResult, run_backtest
-from .metrics import (
-    compute_cagr,
-    compute_max_drawdown,
-    compute_sharpe_ratio,
-    compute_volatility,
-    compute_yearly_returns,
-    summarize_performance,
+from .data import (
+    Universe,
+    fetch_sp500_universe_cached,
+    fetch_sp500_universe,   # alias for convenience
+    download_price_history,
 )
-from .plotting import plot_cumulative_performance
+from .main import compute_start_end_dates
+from .strategies import OneYearMomentum
+from .engine import run_backtest
 from .reporting import compile_performance_tables
-from .strategies import OneYearMomentum, Strategy
+from .plotting import plot_cumulative_performance
 
 __all__ = [
-    "BacktestResult",
-    "OneYearMomentum",
-    "Strategy",
     "Universe",
-    "compile_performance_tables",
-    "compute_cagr",
-    "compute_max_drawdown",
-    "compute_sharpe_ratio",
-    "compute_volatility",
-    "compute_yearly_returns",
-    "download_price_history",
+    "fetch_sp500_universe_cached",
     "fetch_sp500_universe",
-    "plot_cumulative_performance",
+    "download_price_history",
+    "compute_start_end_dates",
+    "OneYearMomentum",
     "run_backtest",
-    "summarize_performance",
+    "compile_performance_tables",
+    "plot_cumulative_performance",
 ]

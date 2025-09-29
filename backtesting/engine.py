@@ -42,7 +42,8 @@ def align_weights_to_daily_frequency(weights: pd.DataFrame, daily_index: pd.Inde
     # the previous allocation active until the next rebalance. Backward fill is
     # only used to populate any initial NaNs (e.g. before the first rebalance).
     expanded = weights.reindex(daily_index, method="ffill")
-    expanded = expanded.fillna(method="bfill").fillna(0.0)
+    #expanded = expanded.fillna(method="bfill").fillna(0.0)
+    expanded = expanded.bfill().fillna(0.0)
     return expanded
 
 
@@ -80,7 +81,7 @@ def run_backtest(
 
     # Benchmark returns: fetch the index, compute returns, align to trading days.
     benchmark_prices = download_price_history([universe.benchmark], start=start, end=end)
-    benchmark_prices = benchmark_prices.reindex(daily_returns.index).fillna(method="ffill")
+    benchmark_prices = benchmark_prices.reindex(daily_returns.index).ffill()
     benchmark_returns = benchmark_prices.pct_change().iloc[:, 0].fillna(0.0)
 
     return BacktestResult(
