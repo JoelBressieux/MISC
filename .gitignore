@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+output/
+
+# Virtual environment odds and ends
+.venv/
+ENV/
+venv/
+
+# Jupyter noise
+.ipynb_checkpoints/
